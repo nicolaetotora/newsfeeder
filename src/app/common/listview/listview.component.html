@@ -1,3 +1,3 @@
-<a *ngFor="let story of stories$" routerLink="/detail/{{story.id}}" routerLinkActive="active">
+<a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
   <h4>{{story.title}}</h4>
 </a>

@@ -20,7 +20,7 @@ export class StoryService {
     );
   }
 
-  getStoryDetails(itemIds: number[]): Observable<Item> {
+  getStoryDetails(itemIds: number[]) {
     return from(itemIds).pipe(
       mergeMap(id => {
         const apiStoryUrl = `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`;
