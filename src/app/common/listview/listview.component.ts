@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { mergeMap } from 'rxjs/operators';
+import { Item } from 'src/app/item';
 import { StoryService } from 'src/app/story.service';
 
 @Component({
@@ -7,13 +9,13 @@ import { StoryService } from 'src/app/story.service';
   styleUrls: ['./listview.component.scss']
 })
 export class ListviewComponent implements OnInit {
-  storyIds;
+  stories$: Item[] = [];
 
   constructor(private storyService: StoryService) { }
 
   ngOnInit() {
-    this.storyService.getStoryIds()
-      .subscribe(res => this.storyIds = res);
+    this.storyService.getStoryIds().pipe(
+      mergeMap((ids: number[]) => this.storyService.getStoryDetails(ids.slice(0, 25)))
+    ).subscribe(item => this.stories$.push(item));
   }
-
 }

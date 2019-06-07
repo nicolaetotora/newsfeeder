@@ -1,21 +1,34 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { from, Observable, throwError } from 'rxjs';
+import { catchError, mergeMap } from 'rxjs/operators';
+
+import { Item } from './item';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoryService {
-  apiUrl = 'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
+  apiNewStoriesUrl = 'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
 
   constructor(private http: HttpClient) { }
 
-  getStoryIds() {
-    return this.http.get(this.apiUrl)
-      .pipe(
-        catchError(this.handleError)
-      );
+  getStoryIds(): Observable<number[]> {
+    return this.http.get<number[]>(this.apiNewStoriesUrl).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  getStoryDetails(itemIds: number[]): Observable<Item> {
+    return from(itemIds).pipe(
+      mergeMap(id => {
+        const apiStoryUrl = `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`;
+        return this.http.get<Item>(apiStoryUrl).pipe(
+          catchError(this.handleError)
+        );
+      })
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
