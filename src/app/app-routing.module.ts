@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GridviewComponent } from './common/gridview/gridview.component';
-import { ListviewComponent } from './common/listview/listview.component';
-import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
-import { ItemComponent } from './common/item/item.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: 'grid', component: GridviewComponent },
-  { path: 'list', component: ListviewComponent },
-  { path: 'detail/:id', component: ItemComponent },
+  {
+    path: 'grid',
+    loadChildren: () => import('./gridview/gridview.module').then(mod => mod.GridviewModule)
+  },
+  {
+    path: 'list',
+    loadChildren: () => import('./listview/listview.module').then(mod => mod.ListviewModule)
+  },
+  {
+    path: 'detail/:id',
+    loadChildren: () => import('./item/item.module').then(mod => mod.ItemModule)
+  },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
