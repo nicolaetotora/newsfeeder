@@ -1,3 +1,6 @@
-<a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
-  <h4>{{story.title}}</h4>
-</a>
+<mat-nav-list dense>
+  <a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
+    <mat-list-item class="mat-title">{{story.title}} ({{story.url}})</mat-list-item>
+    <mat-divider></mat-divider>
+  </a>
+</mat-nav-list>

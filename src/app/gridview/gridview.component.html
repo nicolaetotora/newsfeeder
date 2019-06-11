@@ -1,3 +1,12 @@
-<p>
-  gridview works!
-</p>
+<mat-grid-list cols="2">
+  <mat-grid-tile *ngFor="let story of stories$ | async">
+    <mat-card>
+      <mat-card-header>
+        <a routerLink="/detail/{{story.id}}" routerLinkActive="active">
+          <mat-card-title>{{story.title}}</mat-card-title>
+          <mat-card-subtitle>{{story.url}}</mat-card-subtitle>
+        </a>
+      </mat-card-header>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

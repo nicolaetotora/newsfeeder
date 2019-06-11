@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap, combineAll, toArray } from 'rxjs/operators';
+import { switchMap, toArray } from 'rxjs/operators';
 import { Item } from 'src/app/item';
 import { StoryService } from 'src/app/story.service';
 

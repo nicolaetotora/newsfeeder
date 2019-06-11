@@ -1,11 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<nav>
-  <a routerLink="/list" routerLinkActive="active">List view</a>
-  <a routerLink="/grid" routerLinkActive="active">Grid view</a>
+<mat-toolbar color="primary">
+  <span class="mat-title">Welcome to {{ title }}!</span>
+</mat-toolbar>
+<nav mat-tab-nav-bar mat-align-tabs="center">
+  <a mat-tab-link routerLink="/list" routerLinkActive="active">List view</a>
+  <a mat-tab-link routerLink="/grid" routerLinkActive="active">Grid view</a>
 </nav>
 <router-outlet></router-outlet>
