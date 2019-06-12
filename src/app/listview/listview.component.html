@@ -1,6 +1,8 @@
-<mat-nav-list dense>
-  <a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
-    <mat-list-item class="mat-title">{{story.title}} ({{story.url}})</mat-list-item>
-    <mat-divider></mat-divider>
+<mat-nav-list>
+  <a mat-list-item *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
+    <p mat-line class="mat-title">{{story.title}}
+      <span class="mat-caption" *ngIf="story.url">({{story.url}})</span>
+    </p>
+    <!-- TODO create directives for days ago and url shortener to domain level -->
   </a>
 </mat-nav-list>

@@ -1,0 +1,19 @@
+.example-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  >* {
+    box-sizing: border-box;
+    margin: 10px;
+    overflow-wrap: break-word;
+
+    &:last-child {
+      flex-grow: 1;
+    }
+  }
+}
+
+.example-card {
+  width: calc(50% - 20px);
+}
