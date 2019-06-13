@@ -6,15 +6,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   {
     path: 'grid',
-    loadChildren: () => import('./gridview/gridview.module').then(mod => mod.GridviewModule)
+    loadChildren: './gridview/gridview.module#GridviewModule'
   },
   {
     path: 'list',
-    loadChildren: () => import('./listview/listview.module').then(mod => mod.ListviewModule)
+    loadChildren: './listview/listview.module#ListviewModule'
   },
   {
     path: 'detail/:id',
-    loadChildren: () => import('./item/item.module').then(mod => mod.ItemModule)
+    loadChildren: './item/item.module#ItemModule'
   },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
