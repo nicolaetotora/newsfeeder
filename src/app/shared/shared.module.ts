@@ -6,9 +6,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
+import { DaysAgoPipe } from '../days-ago.pipe';
+import { HostnameExtractorPipe } from '../hostname-extractor.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [DaysAgoPipe, HostnameExtractorPipe],
   imports: [
     CommonModule,
     MatToolbarModule,
@@ -25,7 +27,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatListModule,
     MatCardModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    DaysAgoPipe,
+    HostnameExtractorPipe
   ]
 })
 export class SharedModule { }

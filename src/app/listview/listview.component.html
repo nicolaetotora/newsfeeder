@@ -1,8 +1,8 @@
 <mat-nav-list>
-  <a mat-list-item *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
-    <p mat-line class="mat-title">{{story.title}}
-      <span class="mat-caption" *ngIf="story.url">({{story.url}})</span>
+  <a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
+    <p class="mat-title">{{story.title}}
+        <span class="mat-caption" *ngIf="story.time">{{story.time | daysAgo}}</span>
     </p>
-    <!-- TODO create directives for days ago and url shortener to domain level -->
+    <mat-divider></mat-divider>
   </a>
 </mat-nav-list>

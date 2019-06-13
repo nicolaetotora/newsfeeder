@@ -10,7 +10,7 @@ import { Item } from './item';
   providedIn: 'root'
 })
 export class StoryService {
-  apiNewStoriesUrl = 'https://hacker-news.firebaseio.com/v0/newstories.json?print=pretty';
+  apiNewStoriesUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
 
   constructor(private http: HttpClient) { }
 
