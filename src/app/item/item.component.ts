@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../item';
+import { StoryService } from '../story.service';
 
 @Component({
   selector: 'app-item',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
+  item: Item;
 
-  constructor() { }
+  constructor(private storyService: StoryService) { }
 
   ngOnInit() {
+    this.storyService.selectedItem$.subscribe(val => this.item = val);
   }
 
 }

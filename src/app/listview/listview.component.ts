@@ -20,4 +20,8 @@ export class ListviewComponent implements OnInit {
       toArray()
     );
   }
+
+  getItem(item) {
+    this.storyService.selectedItem = item;
+  }
 }

@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { from, Observable, throwError } from 'rxjs';
+import { from, Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 
 import { Item } from './item';
@@ -11,8 +11,13 @@ import { Item } from './item';
 })
 export class StoryService {
   apiNewStoriesUrl = 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty';
+  private _selectedItem = new BehaviorSubject<Item>(null);
 
-  constructor(private http: HttpClient) { }
+  selectedItem$: Observable<Item>;
+
+  constructor(private http: HttpClient) {
+    this.selectedItem$ = this._selectedItem.asObservable();
+   }
 
   getStoryIds(): Observable<number[]> {
     return this.http.get<number[]>(this.apiNewStoriesUrl).pipe(
@@ -45,5 +50,13 @@ export class StoryService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
+  }
+
+  get selectedItem(): Item {
+    return this._selectedItem.getValue();
+  }
+
+  set selectedItem(item: Item) {
+    this._selectedItem.next(item);
   }
 }

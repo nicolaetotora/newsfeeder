@@ -1,5 +1,5 @@
 <mat-nav-list>
-  <a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active">
+  <a *ngFor="let story of stories$ | async" routerLink="/detail/{{story.id}}" routerLinkActive="active" (click)="getItem(story)">
     <p class="mat-title">{{story.title}}
         <span class="mat-caption" *ngIf="story.time">{{story.time | daysAgo}}</span>
     </p>
