@@ -17,7 +17,7 @@ export class StoryService {
 
   constructor(private http: HttpClient) {
     this.selectedItem$ = this._selectedItem.asObservable();
-   }
+  }
 
   getStoryIds(): Observable<number[]> {
     return this.http.get<number[]>(this.apiNewStoriesUrl).pipe(
@@ -57,6 +57,7 @@ export class StoryService {
   }
 
   set selectedItem(item: Item) {
+    console.log(item);
     this._selectedItem.next(item);
   }
 }
