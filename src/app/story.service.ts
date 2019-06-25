@@ -57,7 +57,6 @@ export class StoryService {
   }
 
   set selectedItem(item: Item) {
-    console.log(item);
     this._selectedItem.next(item);
   }
 }
